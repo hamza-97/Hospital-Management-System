@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<title>:: Birth Report ::</title>
+<title>:: View Doctors ::</title>
 
 <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -24,11 +24,13 @@
        <br>
      
 
-    <div class="menu">
+       
+
+<div class="menu">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li><a href="/users/doctor_dashboard"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-                <li><a href="/users/doctor_view_patient"><i class="zmdi zmdi-account-o"></i><span>Patient's List</span></a></li>                                                
+                <li class="active open"><a href="/users/doctor_view_patient"><i class="zmdi zmdi-account-o"></i><span>Patient's List</span></a></li>                                            
                 <li><a class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span>Appointment</span> </a>
                     <ul class="ml-menu">
                         <li><a href="/users/doctor_upcoming_appointments">Upcoming Appointments</a></li>
@@ -42,9 +44,9 @@
                         <li><a href="/users/doctor_add_prescription">Add Prescription</a></li>
                     </ul>
                 </li>
-                <li class="active open"><a class="menu-toggle"><i class="zmdi zmdi-filter-frames"></i><span>Report</span> </a>
+                <li><a class="menu-toggle"><i class="zmdi zmdi-filter-frames"></i><span>Report</span> </a>
                     <ul class="ml-menu">
-                        <li class="active open"><a href="/users/doctor_view_birth_report">Birth Report</a></li>
+                        <li><a href="/users/doctor_view_birth_report">Birth Report</a></li>
                         <li><a href="/users/doctor_view_operation_report">Operation Report</a></li>
                         <li><a href="/users/doctor_view_expire_report">Expire Report</a></li>
                         <li><a href="/users/doctor_add_report">Add Report</a></li>
@@ -63,57 +65,62 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>Report</h2>
+            <h2>View Patient</h2>
             <small class="text-muted">Welcome to Hospital Management System</small>
         </div>
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Birth Report List</h2>
-                        <a href="/users/doctor_add_report">
-                        <ul class="header-dropdown m-r--5">
-                            <button type="button" class="btn btn-raised btn-primary btn-sm m-t-0" data-toggle="modal"> <i class="zmdi zmdi-plus" style= "color:white !important"></i> ADD NEW</button>
-                        </ul>
-                        </a>
+                        <h2>All Patients</h2>
                     </div>
                     <div class="body table-responsive">
                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Doctor</th>
-                                    <th>Patient</th>
-                                    <th>Description</th>
-                                    <th>Options</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                     <th>Options</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Doctor</th>
-                                    <th>Patient</th>
-                                    <th>Description</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Options</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {{#each reports}}
+                                {{#each files}}
                                 <tr>
-                                    <td>{{this.date}}</td>
-                                    <td>{{this.doctorname}}</td>
-                                    <td>{{this.patientname}}</td>
-                                    <td>{{this.description}}</td>
-                                    <td style="text-align:center; width:250px">
-                                        <form style= "display:inline-block;" method="GET" action="/users/doctor_edit_birth_report/{{this._id}}">
-                                    <button class="btn btn-raised" style="background-color: green; "> <div class="event-name b-greensea" > <a class=" text-muted event-remove" style= "color:white !important"><i class="zmdi zmdi-edit"></i></a> </div></button>
+                                    <td>{{this.name}}</td>
+                              
+                                    <td>{{this.age}}</td>
+                                    <td>{{this.gender}}</td>               
+                                    <td>{{this.phone}}</td>
+                                    <td>{{this.address}}</td>
+                                    <td style="text-align:center; width:400px">
+                                        <form style= "display:inline-block;" method="GET" action="/users/patient_view_report/{{this._id}}">
+                                    <button class="btn btn-raised" style="background-color: blue; "> <div class="event-name b-greensea" > <a class=" text-muted event-remove" style= "color:white !important"><i class="zmdi zmdi-eye"> Report</i></a> </div></button>
                                     </form>
                                     <!-- <td style="text-align:center; width:100px"> -->
-                                        <form style= "display:inline-block;" method="POST" action="/users/doctor_delete_birth_report/{{this._id}}?_method=DELETE">
-                                    <button class="btn btn-raised" style="background-color: #f44336; "> <div class="event-name b-greensea" > <a class=" text-muted event-remove" style= "color:white !important"><i class="zmdi zmdi-delete"></i></a> </div></button>
+                                        <form style= "display:inline-block;" method="GET" action="/users/patient_view_prescription/{{this._id}}">
+                                    <button class="btn btn-raised" style="background-color: blue; "> <div class="event-name b-greensea" > <a class=" text-muted event-remove" style= "color:white !important"><i class="zmdi zmdi-eye"> Prescription</i></a> </div></button>
+                                    </form>
+                                    <form style= "display:inline-block;" method="GET" action="/users/patient_view_bed_allotment/{{this._id}}">
+                                    <button class="btn btn-raised" style="background-color: blue; "> <div class="event-name b-greensea" > <a class=" text-muted event-remove" style= "color:white !important"><i class="zmdi zmdi-eye"> Bed Allotments</i></a> </div></button>
                                     </form></td>
-                                  </tr>
+                                </tr>
                                 {{/each}}
+                   
+                       
+            
                             </tbody>
                         </table>
                     </div>

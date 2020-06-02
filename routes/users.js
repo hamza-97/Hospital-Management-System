@@ -2309,7 +2309,15 @@ router.delete('/doctor_complete_appointment/:id', (req, res) => {
 
 
 
-
+router.get('/doctor_view_patient', function(req, res) {
+  Patient.find({},function(err, files) {
+    if (!files || files.length === 0) {
+      res.render('users/doctor_view_patient', { files: false });
+    } else {
+      res.render('users/doctor_view_patient', { files: files });
+    }
+  })
+});
 
 
 
@@ -2406,6 +2414,65 @@ router.post('/submit_doctor_add_prescription', (req, res) => {
   })
 
     
+});
+
+router.get('/patient_view_bed_allotment/:id', function(req, res) {
+  patient_allotment=[]
+    Bedallotment.find({},function(err, files) {
+      if (!files || files.length === 0) {
+        res.render('users/patient_view_bed_allotment_doctor', { allotments: false });
+      } else {
+        for(var i=0; i<files.length; i++){
+            if(req.params.id == files[i].patient){
+              patient_allotment.push(files[i]);
+            }
+          }
+        res.render('users/patient_view_bed_allotment_doctor', { allotments: patient_allotment });
+      }
+    })
+});
+
+router.get('/patient_view_prescription/:id', function(req, res) {
+  patient_prescription = []
+    Prescription.find({},function(err, files) {
+      if (!files || files.length === 0) {
+        res.render('users/patient_view_prescription_doctor', {prescriptions: false });
+      } else {
+         for(var i=0; i<files.length; i++){
+            if(req.params.id == files[i].patient){
+              patient_prescription.push(files[i]);
+            }
+          }
+        res.render('users/patient_view_prescription_doctor', { prescriptions: patient_prescription });
+      }
+    })
+});
+
+
+router.get('/patient_view_full_prescription_doctor/:id', function(req, res) {
+  Prescription.findOne({ _id: req.params.id }, (err, user) => {
+    if (!user || user.length === 0) {
+      res.render('users/patient_view_full_prescription_doctor', {prescription: false });
+    } else {
+      res.render('users/patient_view_full_prescription_doctor', { prescription: user });
+    }
+  })
+});
+
+router.get('/patient_view_report/:id', function(req, res) {
+  patient_report=[]
+    Report.find({},function(err, files) {
+      if (!files || files.length === 0) {
+        res.render('users/patient_view_report_doctor', { reports: false });
+      } else {
+        for(var i=0; i<files.length; i++){
+          if(files[i].patient == req.params.id){
+            patient_report.push(files[i]);
+          }
+        }
+        res.render('users/patient_view_report_doctor', { reports: patient_report });
+      }
+    })
 });
 
 router.delete('/doctor_delete_prescription/:id', (req, res) => {

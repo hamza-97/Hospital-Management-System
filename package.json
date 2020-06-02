@@ -1,7 +1,7 @@
 {
   "name": "scriptomania",
   "version": "1.0.0",
-  "description": "Scriptomania is a web app designed for writers and producers to upload and download media scripts.",
+  "description": "Hospital Management System",
   "main": "app.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -37,10 +37,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hamza-97/Software-Engineering.git"
+    "url": "git+https://github.com/hamza-97/Hospital-Management-System"
   },
   "bugs": {
-    "url": "https://github.com/hamza-97/Software-Engineering/issues"
+    "url": "https://github.com/hamza-97/Hospital-Management-System/issues"
   },
-  "homepage": "https://github.com/hamza-97/Software-Engineering#readme"
+  "homepage": "https://github.com/hamza-97/Hospital-Management-System#readme"
 }
