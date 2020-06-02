@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>:: Patient Dashboard ::</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+<link href="/css/main.css" rel="stylesheet">
+<!-- Custom Css -->
+
+<!-- Swift Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-blue">
+
+<section> 
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar"> 
+       <br>
+       <br>
+
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="active open"><a href="/users/patient_dashboard"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>                                               
+                <li><a class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span>Appointment</span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="/users/patient_past_appointments">Past Appointments</a></li>
+                        <li><a href="/users/patient_book_appointment">Book Appointment</a></li>
+                    </ul>
+                </li>
+                <li><a href="/users/patient_view_prescription"><i class="zmdi zmdi-developer-board"></i><span>Prescriptions</span></a></li>
+                <li><a href="/users/patient_view_bed_allotment"><i class="zmdi zmdi-local-hotel"></i><span>Bed Allotments</span></a></li>
+                <li><a href="/users/patient_view_report"><i class="zmdi zmdi-filter-frames"></i><span>Reports</span></a></li>
+                <li><a href="/users/patient_logout"><i class="zmdi zmdi-sign-in"></i><span>Log Out</span> </a></li>
+            </ul>
+        </div>
+        <!-- #Menu -->
+    </aside>
+    <!-- #END# Left Sidebar --> 
+
+</section>
+
+<section class="content profile-page">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Patient Profile</h2>
+            <small class="text-muted">Welcome to Hospital Management System</small>
+        </div>        
+        <div class="row clearfix">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+               <!--  <div class=" card patient-profile">
+                    <img src="assets/images/image-1.jpg" class="img-fluid" alt="">                              
+                </div> -->
+                <div class="card">
+                    <div class="header">
+                        <h2>About Patient</h2>
+                    </div>
+                    <div class="body">
+                        <strong>Name</strong>
+                        <p>{{patient.name}}</p>
+                        <strong>Phone</strong>
+                        <p>{{patient.phone}}</p>
+                        <hr>
+                        <strong>Address</strong>
+                        <address>{{patient.address}}</address>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="body"> 
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item"><a class="nav-link active"data-toggle="tab"  href="#upcomingappointments">Upcoming Appointments</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#pastappointments">Past Appointments</a></li>
+                        </ul>
+                        
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane in active" id="upcomingappointments">
+                            {{#if upcoming_appointments}}
+                            {{#each upcoming_appointments}}
+                            <div class="col-lg-12 col-md-6 col-sm-12" >
+                                <div class="card all-patients">
+                                    <div class="body" style="background-color:#F5F5F5;">
+                                        <div class="row" >
+                                            <div class="col-md-8 col-sm-8 m-b-0">
+                                                <h5 class="m-b-0">{{this.doctorname}}</a></h5> <!-- <small>{{this.doctorphone}}</small> -->
+                                                <address class="m-b-0">
+                                                Date: {{this.date}}<br>
+                                                <addres title="Phone">Time: {{this.timeslots}}
+                                                </address>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}  
+                            {{else}}
+                            <div class="col-lg-12 col-md-6 col-sm-12" >
+                                <div class="card all-patients">
+                                    <div class="body" style="background-color:#F5F5F5;">
+                                        <div class="row" >
+                                            <div class="col-md-8 col-sm-8 m-b-0">
+                                                <h5 class="m-b-0">No appointments to show</a></h5> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{/if}}                             
+                            <!-- <a href="#" class="edit"> <i class="zmdi zmdi-edit"></i>-->
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="pastappointments">
+                                {{#if past_appointments}}
+                               {{#each past_appointments}}
+                            <div class="col-lg-12 col-md-6 col-sm-12" >
+                                <div class="card all-patients">
+                                    <div class="body" style="background-color:#F5F5F5;">
+                                        <div class="row" >
+                                            <div class="col-md-8 col-sm-8 m-b-0">
+                                                <h5 class="m-b-0">{{this.doctorname}}</a></h5> <!-- <small>{{this.doctorphone}}</small> -->
+                                                <address class="m-b-0">
+                                                Date: {{this.date}}<br>
+                                                <addres title="Phone">Time: {{this.timeslots}}
+                                                <!-- <br>Remarks: {{this.remarks}} -->
+                                                </address>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}} 
+                            {{else}}
+                            <div class="col-lg-12 col-md-6 col-sm-12" >
+                                <div class="card all-patients">
+                                    <div class="body" style="background-color:#F5F5F5;">
+                                        <div class="row" >
+                                            <div class="col-md-8 col-sm-8 m-b-0">
+                                                <h5 class="m-b-0">No appointments to show</a></h5> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{/if}}   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="color-bg"></div>
+<!-- Jquery Core Js --> 
+<script src="/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js -->
+<script src="/bundles/morphingsearchscripts.bundle.js"></script> <!-- morphing search Js --> 
+<script src="/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
+
+<script src="/bundles/mainscripts.bundle.js"></script><!-- Custom Js -->
+<script src="/bundles/morphingscripts.bundle.js"></script><!-- morphing search page js --> 
+</body>
+</html>

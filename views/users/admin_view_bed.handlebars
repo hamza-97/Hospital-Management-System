@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>:: Bed ::</title>
+
+<link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+<!-- JQuery DataTable Css -->
+<link href="/plugins/jquery-datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="/css/main.css" rel="stylesheet">
+<!-- Custom Css -->
+<link href="/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-blue">
+
+<section> 
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">       
+       <br>
+       <br>
+     
+
+        
+
+ <div class="menu">
+            <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+                <li><a href="/users/admin_dashboard"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>    
+                <li><a class="menu-toggle"><i class="zmdi zmdi-store-24"></i><span>Departments</span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="/users/admin_view_department">Department List</a></li>
+                        <li><a href="/users/admin_add_department">Add Department</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span>Doctors</span> </a>
+
+                    <ul class="ml-menu">
+                        <li><a href="/users/admin_view_doctor">View Doctors</a></li>
+                        <li><a href="/users/admin_add_doctor">Add Doctor</a></li>  
+                    </ul>
+                </li>
+                <li><a class="menu-toggle"><i class="zmdi zmdi-account-o"></i><span>Patients</span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="/users/admin_view_patient">View Patients</a></li>
+                        <li><a href="/users/admin_add_patient">Add Patient</a></li>                 
+                    </ul>
+                </li>
+                <li><a class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span>Appointment</span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="/users/admin_book_appointment">Book Appointment</a></li>
+                        <li><a href="/users/admin_manage_booked_appointments">Manage Appointment</a></li>
+                    </ul>
+                </li>
+                <li class="active open"><a class="menu-toggle"><i class="zmdi zmdi-local-hotel"></i><span>Beds</span> </a>
+                    <ul class="ml-menu">
+                        <li class="active open"><a href="/users/admin_view_bed">Bed List</a></li>
+                        <li><a href="/users/admin_add_bed">Add Bed</a></li>
+                        <li><a href="/users/admin_view_category">Bed Category</a></li>
+                        <li><a href="/users/admin_add_category">Add Category</a></li>  
+                        <li><a href="/users/admin_view_allotment">Bed Allotments</a></li>  
+                        <li><a href="/users/admin_add_allotment">Add Allotment</a></li> 
+                    </ul>
+                </li>
+                <li><a class="menu-toggle"><i class="zmdi zmdi-developer-board"></i><span>Prescription</span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="/users/admin_view_prescription">Prescription List</a></li>
+                        <li><a href="/users/admin_add_prescription">Add Prescription</a></li>
+                    </ul>
+                </li>
+                <li><a class="menu-toggle"><i class="zmdi zmdi-filter-frames"></i><span>Report</span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="/users/admin_view_birth_report">Birth Report</a></li>
+                        <li><a href="/users/admin_view_operation_report">Operation Report</a></li>
+                        <li><a href="/users/admin_view_expire_report">Expire Report</a></li>
+                        <li><a href="/users/admin_add_report">Add Report</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="/users/admin_logout"><i class="zmdi zmdi-sign-in"></i><span>Log Out</span> </a></li>
+            </ul>
+        </div>
+        <!-- #Menu -->
+    </aside>
+    <!-- #END# Left Sidebar --> 
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Bed</h2>
+            <small class="text-muted">Welcome to Hospital Management System</small>
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Bed List</h2>
+                        <a href="/users/admin_add_bed">
+                        <ul class="header-dropdown m-r--5">
+                            <button type="button" class="btn btn-raised btn-primary btn-sm m-t-0" data-toggle="modal"> <i class="zmdi zmdi-plus" style= "color:white !important"></i> ADD NEW</button>
+                        </ul>
+                        </a>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Bed Id</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Options</th>
+                                    <!-- <th style="text-align:center">Delete</th> -->
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Bed Id</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Options</th>
+                                    <!-- <th style="text-align:center">Delete</th> -->
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                {{#each beds}}
+                                <tr>
+                                    <td>{{this.bedid}}</td>
+                                    <td>{{this.description}}</td>
+                                    <td>{{this.status}}</td>
+                                    <td style="text-align:center; width:250px"><form style= "display:inline-block;" method="GET" action="/users/admin_edit_bed/{{this._id}}">
+                                    <button class="btn btn-raised" style="background-color: green; "> <div class="event-name b-greensea" > <a class=" text-muted event-remove" style= "color:white !important"><i class="zmdi zmdi-edit"></i></a> </div></button>
+                                    </form>
+                                    <!-- <td style="text-align:center; width:100px"> --><form style= "display:inline-block;" method="POST" action="/users/admin_delete_bed/{{this._id}}?_method=DELETE">
+                                    <button class="btn btn-raised" style="background-color: #f44336; "> <div class="event-name b-greensea" > <a class=" text-muted event-remove" style= "color:white !important"><i class="zmdi zmdi-delete"></i></a> </div></button>
+                                    </form></td>
+                                  </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="color-bg"></div>
+<!-- Jquery Core Js --> 
+<script src="/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js -->
+<script src="/bundles/morphingsearchscripts.bundle.js"></script> <!-- morphing search Js --> 
+<script src="/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
+
+<script src="/bundles/datatablescripts.bundle.js"></script><!-- Jquery DataTable Plugin Js -->
+
+<script src="/bundles/mainscripts.bundle.js"></script><!-- Custom Js -->
+<script src="/bundles/morphingscripts.bundle.js"></script><!-- morphing search page js --> 
+<script src="/js/morphing.js"></script><!-- Custom Js -->  
+<script src="/js/pages/tables/jquery-datatable.js"></script>
+</body>
+</html>
